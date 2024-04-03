@@ -7,6 +7,7 @@ import { Select } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../context/authContext.js";
 import { toast } from "react-toastify";
+import Sidebar from "../../components/layout/Sidebar.js";
 const { Option } = Select;
 
 const UpdateProduct = () => {
@@ -74,7 +75,7 @@ const UpdateProduct = () => {
         formdata.append("description",description);
         formdata.append("quantity",quantity);
         formdata.append("category",category);
-       photo && formdata.append("productImage",photo);
+        photo && formdata.append("productImage",photo);
         // console.log(formdata.get("name"));
         
         const response =await axios.put(
@@ -113,10 +114,10 @@ const UpdateProduct = () => {
   };
   return (
     <Layout title={"Dashboard - Create Product"}>
-      <div className="container-fluid m-3 p-3">
+      
         <div className="row">
           <div className="col-md-3">
-            <AdminMenu />
+            <Sidebar/>
           </div>
           <div className="col-md-9">
             <h1>Update Product</h1>
@@ -222,7 +223,7 @@ const UpdateProduct = () => {
             </div>
           </div>
         </div>
-      </div>
+   
     </Layout>
   );
 };

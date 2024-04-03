@@ -41,8 +41,8 @@ console.log(product);
   }, [params.slug]);
   return (
     <Layout>
-      <div className="row container mt-3">
-        <div className="col-md-6">
+      <div className="row container ">
+        <div className="col-md-6 mt-4 product-box">
           <img
             src={`${process.env.REACT_APP_API_URL}/api/product/get-productImage/${product._id}`}
             class="card-img-top"
@@ -50,13 +50,13 @@ console.log(product);
             style={{ width: "300px", height: "250px",borderRadius:"10px" }}
             />
         </div>
-        <div className="col-md-6">
-            <h1 className="text-center">Product details</h1>
+        <div className="col-md-6 product-details">
+            <h3 className="text-center">Product details</h3>
             <h3>Name: {product.name}</h3>
             <h3>Description: {product.description}</h3>
             <h3>Price: Rs:- {product.price}/- </h3>
             <h3>Category: {product.category?.name}</h3>
-            <button className="btn btn-secondary">Add to cart</button>
+            <button className="btn btn-secondary ">Add to cart</button>
             </div>
       </div>
       <div className="row mt-3">

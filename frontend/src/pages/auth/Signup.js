@@ -44,10 +44,10 @@ const navigate=useNavigate();
 
   return (
     <Layout title="BuYsite-Signup">
-      <div className="signup">
+      <div className="login-register">
         <h2 >Sign Up</h2>
         
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form">
           <div className="mb-3">
           
             <input
@@ -87,7 +87,7 @@ const navigate=useNavigate();
           </div>
          
           <button type="submit" className="btn btn-primary">
-            Submit
+            SignUp
           </button>
         </form>
       </div>

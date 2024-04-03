@@ -1,5 +1,6 @@
 import express from "express";
 import { isAdmin, requireSign } from "../middleware/authorization.js";
+import multer from "multer";
 import {
   addProduct,  
   allOrdersControllers,  
@@ -19,10 +20,26 @@ import {
   similarProductController,
   updateProduct,
 } from "../controllers/productController.js";
-import formidable from "express-formidable";
 const router = express.Router();
 //add product
-router.post("/add-product", requireSign, isAdmin, formidable(), addProduct);
+import formidable from "express-formidable";
+// router.post("/add-product", requireSign, isAdmin, formidable(), addProduct);
+
+//create a multer store
+import path from "path";
+const storage=multer.diskStorage({
+  destination:(req,file,cb)=>{
+      cb(null,path.resolve("./public/uploads/products"))
+  },
+  filename:(req,file,cb)=>{
+    const imagepath=`${Date.now()}-${file.originalname}`;
+    cb(null,imagepath);
+  }
+
+})
+const upload=multer({storage:storage});
+router.post("/add-product", requireSign, isAdmin, formidable(), upload.single("productImage"), addProduct); //with the help of multer
+
 router.get("/get-allproducts", getAllProduct);
 router.get("/get-product/:name", getSingleProduct);
 router.get("/get-productImage/:id", getProductImage);

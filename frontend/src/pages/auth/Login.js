@@ -56,10 +56,10 @@ const location=useLocation();
 
   return (
     <Layout title="BuYsite-Signup">
-      <div className="signup">
+      <div className="signup login-register">
         <h2 >Login </h2>
         
-        <form onSubmit={handleSubmit} className="d-flex flex-column">
+        <form onSubmit={handleSubmit} className="form">
          
           <div className="mb-3">
           
@@ -92,7 +92,7 @@ const location=useLocation();
            Login
           </button>
            </div>
-          <button  className="btn btn-info" onClick={()=>navigate("/forgetPassword")}>
+          <button  className="btn " onClick={()=>navigate("/forgetPassword")}>
             Forget Password
           </button>
         </form>

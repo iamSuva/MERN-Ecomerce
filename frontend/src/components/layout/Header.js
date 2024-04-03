@@ -37,7 +37,7 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <Link className="navbar-brand" to="/">
+            <Link className="navbar-brand navlogo" to="/">
               BuYsite
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -100,31 +100,34 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <li class="nav-item dropdown">
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
+                  <li className="nav-item dropdown">
+                    <Link
+                      className="nav-link dropdown-toggle"
+                      to="/dashboard"
                       id="navbarDropdown"
-                      role="button"
+                      
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
                       {auth.user.username}
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    </Link>
+                    <ul
+                      className="dropdown-menu"
+                      aria-labelledby="navbarDropdown"
+                    >
                       <li>
                         <NavLink
                           to={`/dashboard/${
-                            auth?.user?.role == "admin" ? "admin" : "user"
+                            auth?.user?.role === "admin" ? "admin" : "user"
                           }`}
-                          class="dropdown-item"
+                          className="dropdown-item"
                         >
                           Dashboard
                         </NavLink>
                       </li>
                       <li>
                         <NavLink
-                          class="dropdown-item"
+                          className="dropdown-item"
                           to="/login"
                           onClick={handleLogout}
                         >
@@ -136,10 +139,7 @@ const Header = () => {
                 </>
               )}
             </ul>
-            {/* <form className="d-flex">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form> */}
+          
           </div>
         </div>
       </nav>

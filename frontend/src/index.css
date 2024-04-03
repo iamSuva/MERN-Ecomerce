@@ -14,11 +14,16 @@
   top:0;
   position: sticky;
   z-index: 10;
-  background-color:rgba(37, 37, 92, 0.603) !important;
+  background-color:rgba(34, 34, 109, 0.881) !important;
   box-shadow: 2px 2px 4px rgba(112, 109, 109, 0.5);
   border-bottom: 0.5px solid gray !important;
 }
 .nav-link{
+  color:rgb(223, 208, 208) !important;
+   font-weight:500 !important;
+}
+.nav-link:hover{
+  color:rgb(223, 129, 57) !important;
    font-weight:500 !important;
 }
 .active{
@@ -26,8 +31,9 @@
   border-radius: 4px;
 }
 .navbar-brand{
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 2px;
+  color: red;
 }
 
 .footer{
@@ -44,17 +50,122 @@
 }
 
 /* register */
+.login-register{
 
-.signup{
+  background-image: url("../public/images/register.jpg");
+  background-size: cover;
+  background-position: center;
+
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   height: 75vh;
 }
+.form {
+  width: 300px;
+  background-color: rgba(175, 149, 149, 0.8); /* Adjust the opacity as needed */
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
 
-/*  */
+
+/* login page */
+
+/*product  */
 .product-link{
   text-decoration: none;
   color: black;
+}
+.product-card{
+  background-color: rgb(126, 141, 136);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:250px;
+  height: auto;
+}
+/* in ProductDetails.js */
+.product-box{ 
+  background-color: aliceblue;
+ text-align: center;
+ min-height:300px;
+}
+.product-details{
+  margin-top: 10px;
+ 
+}
+
+.product-image{
+  width:60px;
+  border-radius: 10px;
+  margin-top:5px;
+}
+/* homepage */
+.main-container{
+  background-color: #D3D3D3;
+}
+
+
+/* footer */
+.footer{
+  background-color: rgb(25, 25, 58);
+}
+
+/* side bar */
+/* Define styles for the sidebar */
+.sidebar {
+ 
+  background-color: #152039; 
+  min-height:100vh; 
+  width: 250px; 
+  padding: 20px; 
+
+}
+
+.sidebar a {
+  color: #ffff;
+  border-radius: 10px;
+  margin-top: 10px;
+  text-decoration: none; /* Remove underline */
+  padding: 10px 0; /* Add padding to links */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.sidebar a:hover {
+  background-color: #7c5e5e; /* Change background color on hover */
+}
+
+
+/* admin page product */
+.table-container{
+  height: 100vh;
+  overflow-y: auto;
+  margin-bottom: 100px;
+}
+/* Style table header */
+.table thead th {
+  background-color: #e8e1e1; /* Light gray background color */
+  text-align: left; /* Align text to the left */
+}
+
+/* Style table rows */
+.table{
+  border: 1px ;
+}
+.table tbody tr {
+  border-bottom: 1px solid #ddd; /* Add border bottom to separate rows */
+}
+
+/* Style alternating row colors */
+.table tbody tr:nth-child(odd) {
+  background-color: #8c929c; /* Light gray background color for even rows */
+}
+.table tbody tr:hover {
+  background-color: #efdfdf; /* Light background color on hover */
 }

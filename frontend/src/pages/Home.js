@@ -151,7 +151,7 @@ const Home = () => {
   return (
     <Layout title="BuYsite-Home page">
       <SlideShow/>
-      <div className="row mt-3">
+      <div className="row mt-3 mx-3 ">
         <div className="col-md-2">
           <h4>Filter by category :</h4>
           <div className="d-flex flex-column mx-4">
@@ -197,10 +197,10 @@ const Home = () => {
               //   to={`/dashboard/admin/product/${product.slug}`}
               //   className="product-link"
               // >
-                <div className="card m-2" style={{ width: "18rem" }}>
+                <div className="card m-2 product-card">
                   <img
                     src={`${process.env.REACT_APP_API_URL}/api/product/get-productImage/${product._id}`}
-                    class="card-img-top"
+                    class="card-img-top product-image"
                     alt="product image"
                     style={{ width: "150px", height: "120px" }}
                   />

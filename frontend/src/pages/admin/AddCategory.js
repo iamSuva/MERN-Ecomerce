@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import CategoryForm from "../../components/layout/form/CategoryForm";
 import { useAuth } from "../../context/authContext";
 import { Modal } from "antd";
+import Sidebar from "../../components/layout/Sidebar";
 
 const AddCategory = () => {
   const { auth } = useAuth();
@@ -107,7 +108,7 @@ const AddCategory = () => {
     <Layout title={"Admin-Add category"}>
       <div className="row">
         <div className="col-md-3">
-          <AdminMenu />
+          <Sidebar/>
         </div>
         <div className="col-md-9">
           <div className="card p-3">

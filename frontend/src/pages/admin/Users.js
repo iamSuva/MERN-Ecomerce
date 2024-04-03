@@ -1,14 +1,14 @@
-import React from 'react'
-import Layout from '../../components/layout/Layout'
-import AdminMenu from '../../components/layout/AdminMenu'
+import React from "react";
+import Layout from "../../components/layout/Layout";
+import AdminMenu from "../../components/layout/AdminMenu";
+import Sidebar from "../../components/layout/Sidebar";
 
 const Users = () => {
   return (
-    <Layout title={'Admin-all users'}>
-
-<div className="row">
+    <Layout title={"Admin-all users"}>
+      <div className="row">
         <div className="col-md-3">
-          <AdminMenu/>
+          <Sidebar />
         </div>
         <div className="col-md-9">
           <div className="card w-60 p-3">
@@ -17,7 +17,7 @@ const Users = () => {
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Users
+export default Users;

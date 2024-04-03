@@ -22,8 +22,9 @@ export const addProduct = async (req, res) => {
   try {
     const { name, description, price, quantity, category } = req.fields;
     console.log("add ", req.fields);
-    const { productImage } = req.files;
-    console.log(req.files);
+    // const { productImage } = req.files;
+    const productImage=req.file;
+    console.log(req.file);
     if (!name || !description || !price || !quantity || !category) {
       return res.status(401).send({ message: "Some fields are empty" });
     }
@@ -34,9 +35,13 @@ export const addProduct = async (req, res) => {
         .send({ message: "img is required and less than 1mb" });
     }
     const product = new productModel({ ...req.fields, slug: slugify(name) });
-    if (productImage) {
-      product.productImage.data = fs.readFileSync(productImage.path);
-      product.productImage.contentType = productImage.type;
+    // if (productImage) {
+    //   product.productImage.data = fs.readFileSync(productImage.path);
+    //   product.productImage.contentType = productImage.type;
+    // }
+    if(productImage)
+    {
+      product.productImage="uploads/products"+productImage.filename;
     }
     await product.save();
     return res.status(200).send({

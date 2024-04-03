@@ -29,12 +29,10 @@ const productSchema=new mongoose.Schema({
     productImage:{
        data:Buffer,
        contentType:String
-    
-    },
-    shipping:{
-        type:Boolean,
-        default:false
+    //   type:String,
+    // //   required:true
     }
+    
 
 
 },{timestamps:true});
