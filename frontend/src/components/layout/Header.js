@@ -60,11 +60,7 @@ const Header = () => {
                     Category
                   </Link>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li>
-                      <Link to={"/categories"} className="dropdown-item">
-                        All categories
-                      </Link>
-                    </li>
+                   
                     {categories?.map((cat) => {
                       return (
                         <li key={cat._id}>

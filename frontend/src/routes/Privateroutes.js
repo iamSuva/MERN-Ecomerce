@@ -28,7 +28,7 @@ const Privateroutes = () => {
       checkAuth();
     }
   }, [auth?.token]);
-  return ok ? <Outlet/> : <Spinner />;
+  return ok ? <Outlet/> : <Spinner/>;
 };
 
 export default Privateroutes;

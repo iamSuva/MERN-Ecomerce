@@ -15,6 +15,7 @@ const Products = () => {
         `${process.env.REACT_APP_API_URL}/api/product/get-allproducts`
       );
       if (data.success) {
+        console.log(data);
         setProducts(data.products);
       }
     } catch (error) {
@@ -50,7 +51,7 @@ const Products = () => {
                     <tr key={product._id}>
                       <td>
                         <img
-                          src={`${process.env.REACT_APP_API_URL}/api/product/get-productImage/${product._id}`}
+                          src={`${process.env.REACT_APP_API_URL}/${product.productImage}`}
                           alt="product"
                           style={{ width: "100px", height: "80px" }}
                         />

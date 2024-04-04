@@ -15,6 +15,7 @@ const UpdateProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [categories, setCategories] = useState([]);
+  const [product, setProduct] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -30,6 +31,7 @@ const UpdateProduct = () => {
       const { data } = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/product/get-product/${params.slug}`
       );
+      setProduct(data.product);
       setName(data.product.name);
       setId(data.product._id);
       setDescription(data.product.description);
@@ -38,6 +40,7 @@ const UpdateProduct = () => {
       setQuantity(data.product.quantity);
     //   setShipping(data.product.shipping);
       setCategory(data.product.category._id);
+      
     } catch (error) {
       console.log(error);
     }
@@ -83,7 +86,7 @@ const UpdateProduct = () => {
        );
        if(response.data?.success) {
          toast.success("product added successfully");
-         navigate("dashboard/admin/products")
+         navigate("/dashboard/admin/products")
        }else{
          toast.error(response.data.error);
        }
@@ -164,7 +167,7 @@ const UpdateProduct = () => {
                 ) : (
                   <div className="text-center">
                     <img
-                      src={`${process.env.REACT_APP_API_URL}/api/product/get-productImage/${id}`}
+                   src={`${process.env.REACT_APP_API_URL}/${product.productImage}`}
                       alt="product_photo"
                       height={"200px"}
                       className="img img-responsive"

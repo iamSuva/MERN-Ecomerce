@@ -28,8 +28,11 @@ import formidable from "express-formidable";
 //create a multer store
 import path from "path";
 const storage=multer.diskStorage({
+
   destination:(req,file,cb)=>{
-      cb(null,path.resolve("./public/uploads/products"))
+    console.log("folder multer")
+    // console.log(path.resolve("./public/uploads/products"));
+      cb(null,"public/uploads/products")
   },
   filename:(req,file,cb)=>{
     const imagepath=`${Date.now()}-${file.originalname}`;
@@ -38,13 +41,13 @@ const storage=multer.diskStorage({
 
 })
 const upload=multer({storage:storage});
-router.post("/add-product", requireSign, isAdmin, formidable(), upload.single("productImage"), addProduct); //with the help of multer
+router.post("/add-product", requireSign, isAdmin, upload.single("productImage"), addProduct); //with the help of multer
 
 router.get("/get-allproducts", getAllProduct);
 router.get("/get-product/:name", getSingleProduct);
 router.get("/get-productImage/:id", getProductImage);
 router.delete("/delete-product/:id", deleteProduct);
-router.put("/update-product/:id", formidable(), updateProduct);
+router.put("/update-product/:id", upload.single("productImage"), updateProduct);
 router.post("/get-filters", filterProductController);
 router.get("/product-count",productCountController);
 router.get("/product-page/:page",productPagination);

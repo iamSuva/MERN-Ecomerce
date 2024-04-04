@@ -27,10 +27,10 @@ const productSchema=new mongoose.Schema({
         required:true
     },
     productImage:{
-       data:Buffer,
-       contentType:String
-    //   type:String,
-    // //   required:true
+    //    data:Buffer,
+    //    contentType:String
+      type:String,
+      required:true
     }
     
 

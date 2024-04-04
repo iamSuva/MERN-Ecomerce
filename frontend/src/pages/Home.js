@@ -199,7 +199,7 @@ const Home = () => {
               // >
                 <div className="card m-2 product-card">
                   <img
-                    src={`${process.env.REACT_APP_API_URL}/api/product/get-productImage/${product._id}`}
+                    src={`${process.env.REACT_APP_API_URL}/${product.productImage}`}
                     class="card-img-top product-image"
                     alt="product image"
                     style={{ width: "150px", height: "120px" }}

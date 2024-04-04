@@ -44,7 +44,7 @@ console.log(product);
       <div className="row container ">
         <div className="col-md-6 mt-4 product-box">
           <img
-            src={`${process.env.REACT_APP_API_URL}/api/product/get-productImage/${product._id}`}
+            src={`${process.env.REACT_APP_API_URL}/${product.productImage}`}
             class="card-img-top"
             alt={product.name}
             style={{ width: "300px", height: "250px",borderRadius:"10px" }}
@@ -66,7 +66,7 @@ console.log(product);
               
                   <div className="card m-2" style={{ width: "18rem" }}>
                     <img
-                      src={`${process.env.REACT_APP_API_URL}/api/product/get-productImage/${product._id}`}
+                      src={`${process.env.REACT_APP_API_URL}/${product.productImage}`}
                       class="card-img-top"
                       alt="product image"
                       style={{ width: "150px", height: "120px" }}

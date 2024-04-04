@@ -5,7 +5,7 @@ import fs from "fs";
 import categoryModel from "../models/categoryModel.js";
 import braintree from "braintree";
 import dotEnv from "dotenv";
- dotEnv.config();
+dotEnv.config();
 import orderModel from "../models/orderModel.js";
 var gateway = new braintree.BraintreeGateway({
   environment: braintree.Environment.Sandbox,
@@ -20,11 +20,12 @@ var gateway = new braintree.BraintreeGateway({
 
 export const addProduct = async (req, res) => {
   try {
-    const { name, description, price, quantity, category } = req.fields;
-    console.log("add ", req.fields);
-    // const { productImage } = req.files;
-    const productImage=req.file;
-    console.log(req.file);
+    const { name, description, price, quantity, category } = req.body;
+    console.log("add ", req.body);
+    
+    const productImage = req.file;
+    console.log("product image "+productImage);
+
     if (!name || !description || !price || !quantity || !category) {
       return res.status(401).send({ message: "Some fields are empty" });
     }
@@ -34,14 +35,13 @@ export const addProduct = async (req, res) => {
         .status(401)
         .send({ message: "img is required and less than 1mb" });
     }
-    const product = new productModel({ ...req.fields, slug: slugify(name) });
+    const product = new productModel({ ...req.body, slug: slugify(name) });
     // if (productImage) {
     //   product.productImage.data = fs.readFileSync(productImage.path);
     //   product.productImage.contentType = productImage.type;
     // }
-    if(productImage)
-    {
-      product.productImage="uploads/products"+productImage.filename;
+    if (productImage) {
+      product.productImage = "uploads/products/" + productImage.filename;
     }
     await product.save();
     return res.status(200).send({
@@ -64,7 +64,6 @@ export const getAllProduct = async (req, res) => {
     const { id } = req.params;
     const products = await productModel
       .find({})
-      .select("-productImage")
       .populate("category")
       .limit(10)
       .sort({ createdAt: -1 });
@@ -89,7 +88,6 @@ export const getSingleProduct = async (req, res) => {
     const { name } = req.params;
     const product = await productModel
       .findOne({ slug: name })
-      .select("-productImage")
       .populate("category");
     return res.status(200).send({
       success: true,
@@ -109,10 +107,9 @@ export const getProductImage = async (req, res) => {
   try {
     const { id } = req.params;
     const product = await productModel.findById(id).select("productImage");
-    if (product.productImage.data) {
-      res.set("Content-type", product.productImage.contentType);
-      return res.status(200).send(product.productImage.data);
-    }
+    
+      return res.status(200).send(product.productImage);
+    
   } catch (error) {
     return res.status(500).send({
       success: false,
@@ -144,9 +141,16 @@ export const deleteProduct = async (req, res) => {
 //update product
 export const updateProduct = async (req, res) => {
   try {
-    const { photo } = req.files;
-    const { name, description, price, category, quantity } = req.fields;
+    
+    const { name, description, price, category, quantity,productImage } = req.body;
     console.log(name + " " + description);
+    const photo=req.file;
+    console.log("update p ",photo);
+    let newProductImage=productImage;
+     if(req.file)
+     {
+         newProductImage="uploads/products/"+req.file.filename;
+     }
     //alidation
     switch (true) {
       case !name:
@@ -167,14 +171,11 @@ export const updateProduct = async (req, res) => {
 
     const product = await productModel.findByIdAndUpdate(
       req.params.id,
-      { ...req.fields, slug: slugify(name) },
+      { ...req.body,productImage:newProductImage, slug: slugify(name) },
       { new: true }
     );
-    if (photo) {
-      product.photo.data = fs.readFileSync(photo.path);
-      product.photo.contentType = photo.type;
-    }
-    await product.save();
+    
+ 
     return res.status(200).send({
       success: true,
       message: "Product Updated Successfully",
@@ -240,7 +241,7 @@ export const productPagination = async (req, res) => {
     let page = req.params.page ? req.params.page : 1;
     const products = await productModel
       .find()
-      .select("-productImage")
+    
       .skip((page - 1) * perpage)
       .limit(perpage)
       .sort({ createdAt: -1 });
@@ -269,7 +270,7 @@ export const productSearchController = async (req, res) => {
           { description: { $regex: keyword, $options: "i" } },
         ],
       })
-      .select("-productImage");
+    
     return res.status(200).send({
       success: true,
       products,
@@ -376,77 +377,86 @@ export const braintreePaymentController = async (req, res) => {
   } catch (error) {}
 };
 
+export const placeOrderController = async (req, res) => {
+  try {
+    const {
+      products,
+      payment,
+      customer,
+      userName,
+      mobileNumber,
+      city,
+      postalCode,
+      streetAddress,
+    } = req.body;
+    console.log("customer ", customer);
+    // Create a new order instance
+    const newOrder = new orderModel({
+      products,
+      payment,
+      customer,
+      userName,
+      mobileNumber,
+      city,
+      postalCode,
+      streetAddress,
+    });
 
-export const placeOrderController=async(req,res)=>{
+    // Save the order to the database
+    const savedOrder = await newOrder.save();
 
-    try {
-      const { products, payment, customer, userName, mobileNumber, city, postalCode, streetAddress } = req.body;
-      console.log("customer ",customer);
-      // Create a new order instance
-      const newOrder = new orderModel({
-        products,
-        payment,
-        customer,
-        userName,
-        mobileNumber,
-        city,
-        postalCode,
-        streetAddress,
-      });
-  
-      // Save the order to the database
-      const savedOrder = await newOrder.save();
-  
-      res.status(200).send({
-        success:true,
-        message:"Order placed"
-      })
-    } catch (error) {
-      console.error("Error creating order:", error);
-      res.status(500).json({ error: "Internal server error" });
-    }
-  
-}
-
+    res.status(200).send({
+      success: true,
+      message: "Order placed",
+    });
+  } catch (error) {
+    console.error("Error creating order:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
 
 //
-export const ordersController=async(req,res)=>{
+export const ordersController = async (req, res) => {
   try {
-    console.log("orders"+req.user._id);
-    const userId=req.user._id;
-    const orders=await orderModel.find({customer:userId}).populate("products");
-    console.log(" order ",orders);
-    
-    return res.status(200).send({
-      message:"order fetched",
-      success:true,
-      orders
-    })
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send({
-      success:false,
-      message:"internal server"
-    })
-  }
-}
+    console.log("orders" + req.user._id);
+    const userId = req.user._id;
+    const orders = await orderModel
+      .find({ customer: userId })
+      .populate("products");
+    console.log(" order ", orders);
 
-export const allOrdersControllers=async(req,res)=>{
-  try {
-    
-    const orders=await orderModel.find({}).populate("products").populate("customer");
-    console.log(" order ",orders);
-    
     return res.status(200).send({
-      message:"order fetched",
-      success:true,
-      orders
-    })
+      message: "order fetched",
+      success: true,
+      orders,
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).send({
-      success:false,
-      message:"internal server"
-    })
+      success: false,
+      message: "internal server",
+    });
   }
-}
+};
+
+export const allOrdersControllers = async (req, res) => {
+  try {
+    const orders = await orderModel
+      .find({})
+      .populate("products")
+      .populate("customer");
+    console.log(" order ", orders);
+
+    return res.status(200).send({
+      message: "order fetched",
+      success: true,
+      orders,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "internal server",
+    });
+  }
+};

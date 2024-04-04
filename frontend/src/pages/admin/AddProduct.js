@@ -20,6 +20,7 @@ const AddProduct = () => {
   const [quantity, setQuantity] = useState("");
   const [category, setCategory] = useState("");
   //get all categories
+  console.log("photo ",photo);
   const getAllcategory = async () => {
     try {
       const response = await axios.get(
@@ -49,6 +50,7 @@ const AddProduct = () => {
       formdata.append("category", category);
       formdata.append("productImage", photo);
       console.log(formdata.get("name"));
+      console.log(formdata);
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/product/add-product`,
         formdata,

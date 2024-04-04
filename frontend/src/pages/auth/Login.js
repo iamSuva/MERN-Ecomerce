@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -11,7 +11,18 @@ const [email,setEmail]=useState("");
 const [password,setPassword]=useState("");
 const navigate=useNavigate();
 const location=useLocation();
- const {auth,setAuth}=useAuth();
+const {auth,setAuth}=useAuth();
+
+
+useEffect(()=>{
+ if(auth.token)
+ {
+  navigate("/");
+ }
+},[auth.token])
+
+
+
  const handleSubmit=async(e)=>{
     e.preventDefault();
       

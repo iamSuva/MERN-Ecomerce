@@ -11,7 +11,7 @@ app.use(urlencoded({extended:true}));
 const port=process.env.PORT;
 import cors from "cors";
 connectDB();//db connection
-app.use(express.static("public"));
+app.use(express.static("./public"));
 app.use(cors());//allow request from anywhere
 
 app.use("/api/auth",authRoutes);

@@ -24,7 +24,7 @@ import SingleCategory from "./pages/SingleCategory";
 import Cartpage from "./pages/Cartpage";
 import CheckoutPage from "./pages/CheckoutPage";
 import OrderController from "./pages/admin/OrderController";
-// import Searchpage from "./pages/Searschpage";
+
 
 function App() {
   return (
