@@ -6,7 +6,7 @@ import { useAuth } from "../context/authContext";
 import Spinner from "../components/layout/Spinner";
 import { Outlet } from "react-router-dom";
 
-const Privateroutes = () => {
+const Userroutes = () => {
     console.log("private routes");
   const [ok, setOk] = useState(false);
   const { auth, setAuth } = useAuth();
@@ -15,7 +15,7 @@ const Privateroutes = () => {
     const checkAuth = async () => {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/auth/userAuth`,
-        { headers: { Authorization: `Bearer ${auth?.token}` } }
+         { headers: { Authorization: `Bearer ${auth?.token}` } }
       );
       console.log("authentication", response);
       if (response.data.ok) {
@@ -31,4 +31,4 @@ const Privateroutes = () => {
   return ok ? <Outlet/> : <Spinner/>;
 };
 
-export default Privateroutes;
+export default Userroutes;

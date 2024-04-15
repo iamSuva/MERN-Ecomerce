@@ -63,7 +63,7 @@ const Order = () => {
                       </ul>
                     </td>
                     <td>{order.payment.totalAmount}</td>
-                    <td>{order.status}</td>
+                    <td>Processing</td>
                   </tr>
                 ))}
               </tbody>

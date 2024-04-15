@@ -214,12 +214,12 @@ const UpdateProduct = () => {
               </div>
              
               <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleUpdate}>
+                <button className="btn btn-success" onClick={handleUpdate}>
                   UPDATE PRODUCT
                 </button>
               </div>
               <div className="mb-3">
-                <button className="btn btn-danger" onClick={handleDelete}>
+                <button className="btn btn-info" onClick={handleDelete}>
                   DELETE PRODUCT
                 </button>
               </div>

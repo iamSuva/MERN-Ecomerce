@@ -6,7 +6,7 @@ import Pagenotfound from "./pages/Pagenotfound";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import Dashboard from "./pages/dashboard/Dashboard";
-import Privateroutes from "./routes/Privateroutes";
+// import Privateroutes from "./routes/Userroutes";
 import ForgetPassword from "./pages/ForgetPassword";
 import Adminroutes from "./routes/Adminroutes";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -24,6 +24,7 @@ import SingleCategory from "./pages/SingleCategory";
 import Cartpage from "./pages/Cartpage";
 import CheckoutPage from "./pages/CheckoutPage";
 import OrderController from "./pages/admin/OrderController";
+import Userroutes from "./routes/Userroutes";
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
         <Route path="/category/:slug" element={<SingleCategory/>} />
         <Route path="/cart" element={<Cartpage/>}/>
         
-        <Route path="/dashboard" element={<Privateroutes />}>
+        <Route path="/dashboard" element={<Userroutes/>}>
           <Route path="user" element={<Dashboard />} />
           <Route path="user/profile" element={<Profile />} />
           <Route path="user/order" element={<Order />} />
@@ -55,8 +56,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forgetPassword" element={<ForgetPassword />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+      
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
     </>

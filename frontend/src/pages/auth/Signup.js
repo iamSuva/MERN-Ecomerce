@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
 const Signup = () => {
     
 const [username,setUsername]=useState("");
 const [email,setEmail]=useState("");
 const [password,setPassword]=useState("");
 const navigate=useNavigate();
+
+const {auth}=useAuth();
+useEffect(()=>{
+  if(auth.token)
+  {
+    navigate("/");
+  }
+},[auth?.token])
+
+
+
  const handleSubmit=async(e)=>{
     e.preventDefault();
     

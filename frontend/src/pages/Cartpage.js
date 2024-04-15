@@ -20,23 +20,7 @@ const Cartpage = () => {
     carts?.map((prod) => (total = total + prod.price));
     return total;
   };
-  //get payment token
-  const getToken = async () => {
-    try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/product/braintree/token`
-      );
-
-      console.log("client ", data);
-      setClientToken(data?.clientToken);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getToken();
-  }, [auth?.token]);
-  //
+  
   const removeCartItem = (pid) => {
     try {
       const mycart = [...carts];
@@ -47,24 +31,20 @@ const Cartpage = () => {
     } catch (error) {}
   };
 
-  // const handlePayment = () => {
-
-  //   console.log("pay req ");
-  //   console.log("toek",clientToken);
-  // };
+  
 
   return (
     <Layout title="Cart-page">
       <h1 className="text-center">Welcome to cart page</h1>
       <div className="row">
-        <h2 className="">
-          {carts.length > 0
+        {/* <h2 className="">
+          {carts && carts.length > 0
             ? `You have ${carts.length} items in cart`
             : "Cart is empty"}
-        </h2>
+        </h2> */}
 
         <div className="col-md-9">
-          {carts.map((product) => (
+          { carts && carts.map((product) => (
             <div className="row m-1 p-3 card flex-row">
               <div className="col-md-8 ">
                 <img
@@ -89,7 +69,7 @@ const Cartpage = () => {
           ))}
         </div>
         <div className="col-md-3">
-          {carts.length > 0 ? (
+          {carts?.length > 0 ? (
             <>
               <h2>Your cart Summary</h2>
               <hr />
@@ -113,20 +93,7 @@ const Cartpage = () => {
             </button>
           )}
 
-          {/* <div className="mt-2">
-            {/* <DropIn
-              options={{
-                authorization: clientToken,
-                paypal:{
-                  flow: "vault",
-                }
-              }}
-              onInstance={(instance) => setInstance(instance)}
-            /> */}
-          {/* <button className="btn btn-primary" onClick={()=>navigate("/dashboard/user/checkout")}>
-              Make Payment
-            </button>
-          </div> */}
+         
         </div>
       </div>
     </Layout>

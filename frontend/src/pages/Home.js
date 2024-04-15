@@ -9,11 +9,10 @@ import { Price } from "../components/layout/Price";
 import { useCart } from "../context/cartContex";
 import SlideShow from "./SlideShow";
 
-
 const Home = () => {
   // const {auth,setAuth}=useAuth();
   // const data=JSON.stringify(auth);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filteredIds, setFilteredIds] = useState([]);
@@ -22,10 +21,8 @@ const Home = () => {
   const [page, setPage] = useState(1);
   const [loading, setloading] = useState(false);
 
- //add to cart
- const {carts,setCarts}=useCart();
-
-
+  //add to cart
+  const { carts, setCarts } = useCart();
 
   const getAllProducts = async () => {
     try {
@@ -128,7 +125,7 @@ const Home = () => {
   }, [page]);
 
   useEffect(() => {
-    // Fetch categories and total count only if no filters are applied
+    // it helps Fetch categories and total count only if no filters are applied
     if (!filteredIds.length && !radio.length) {
       getAllCategory();
       getTotal();
@@ -136,11 +133,11 @@ const Home = () => {
   }, [filteredIds.length, radio.length]);
 
   useEffect(() => {
-    // Fetch products based on filters whenever they change
+    // it helps to Fetch products based on filters whenever they change
     if (filteredIds.length || radio.length) {
       getFilteredProducts();
     } else {
-      // Fetch all products if no filters are applied
+      //it helps to  Fetch all products if no filters are applied
       getAllProducts();
     }
   }, [filteredIds, radio]);
@@ -150,22 +147,24 @@ const Home = () => {
   };
   return (
     <Layout title="BuYsite-Home page">
-      <SlideShow/>
+      <SlideShow />
       <div className="row mt-3 mx-3 ">
         <div className="col-md-2">
           <h4>Filter by category :</h4>
           <div className="d-flex flex-column mx-4">
             {categories?.map((cat) => {
               return (
-                <Checkbox
-                  key={cat._id}
-                  onChange={(e) => handleFilter(e.target.checked, cat._id)}
-                >
-                  {cat.name}
-                </Checkbox>
+                <div key={cat._id}>
+                  <input
+                    type="checkbox"
+                    onChange={(e) => handleFilter(e.target.checked, cat._id)}
+                  />
+                  <label>{cat.name}</label>
+                </div>
               );
             })}
           </div>
+
           <h4>Filter by price :</h4>
           <div className="d-flex flex-column mx-4">
             {
@@ -185,7 +184,7 @@ const Home = () => {
           </div>
         </div>
         <div className="col-md-10">
-          <h1 className="text-center">All products </h1>
+          {/* <h1 className="text-center">All products </h1> */}
           {/* {
                JSON.stringify(filteredIds)
               // JSON.stringify(radio)
@@ -197,32 +196,41 @@ const Home = () => {
               //   to={`/dashboard/admin/product/${product.slug}`}
               //   className="product-link"
               // >
-                <div className="card m-2 product-card">
-                  <img
-                    src={`${process.env.REACT_APP_API_URL}/${product.productImage}`}
-                    class="card-img-top product-image"
-                    alt="product image"
-                    style={{ width: "150px", height: "120px" }}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{product.name}</h5>
-                    <p className="card-text">{product.description}</p>
-                    <p>Price: {product.price} Rs/-</p>
-                    <Button className="btn btn-secondary m-1"
-                    onClick={()=>navigate(`/product/${product.slug}`)}
-                    >More</Button>
-                    <Button className="btn btn-info"
-                    onClick={()=>
-                      {
-                        const updatedCarts = carts ? [...carts, product] : [product];
-                        setCarts(updatedCarts);
-                        localStorage.setItem("carts", JSON.stringify(updatedCarts));
-                        toast.success("Added to cart");
-                      }
-                      }
-                    >Add Cart</Button>
-                  </div>
+              <div className="card m-2 product-card">
+                <img
+                  src={`${process.env.REACT_APP_API_URL}/${product.productImage}`}
+                  class="card-img-top product-image"
+                  alt="product image"
+                  style={{ width: "150px", height: "120px" }}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{product.name}</h5>
+                  <p className="card-text">{product.description}</p>
+                  <p>Price: {product.price} Rs/-</p>
+                  <Button
+                    className="btn btn-secondary m-1"
+                    onClick={() => navigate(`/product/${product.slug}`)}
+                  >
+                    More
+                  </Button>
+                  <Button
+                    className="btn btn-info"
+                    onClick={() => {
+                      const updatedCarts = carts
+                        ? [...carts, product]
+                        : [product];
+                      setCarts(updatedCarts);
+                      localStorage.setItem(
+                        "carts",
+                        JSON.stringify(updatedCarts)
+                      );
+                      toast.success("Added to cart");
+                    }}
+                  >
+                    Add Cart
+                  </Button>
                 </div>
+              </div>
               // </Link>
             ))}
           </div>
@@ -231,7 +239,6 @@ const Home = () => {
           {products && products.length < total && (
             <button
               className="btn btn-warning "
-             
               onClick={(e) => {
                 e.preventDefault();
                 setPage(page + 1);

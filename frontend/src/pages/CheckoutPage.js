@@ -42,7 +42,7 @@ const CheckoutPage = () => {
       const orderData = {
         products: carts.map((product) => product._id),
         payment: {
-          totalAmount,
+          totalAmount
         },
         customer: auth.user._id, // Using customer ID from authentication
         userName: formData.userName,
@@ -140,7 +140,7 @@ const CheckoutPage = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">Proceed to Payment</button>
+        <button type="submit" className="btn btn-primary">Place order</button>
       </form>
     </div>
 

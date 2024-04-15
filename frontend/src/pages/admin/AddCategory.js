@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
-import AdminMenu from "../../components/layout/AdminMenu";
+// import AdminMenu from "../../components/layout/AdminMenu";
 import axios from "axios";
 import { toast } from "react-toastify";
 import CategoryForm from "../../components/layout/form/CategoryForm";
@@ -112,8 +112,8 @@ const AddCategory = () => {
         </div>
         <div className="col-md-9">
           <div className="card p-3">
-            <h1>Manage Category</h1>
-            <div className="w-75 p-3">
+            <h3>Add Category</h3>
+            <div className="w-50 p-3">
               <div className="p-3">
                 <CategoryForm
                   handleSubmit={handleSubmit}
@@ -138,7 +138,7 @@ const AddCategory = () => {
                           <td>{cat.name}</td>
                           <td>
                             <button
-                              className="btn btn-primary"
+                              className="btn btn-info"
                               onClick={() => {
                                 setVisible(true);
                                 setUpdated(cat.name);
@@ -148,7 +148,7 @@ const AddCategory = () => {
                               Edit
                             </button>
                             <button
-                              className="btn btn-danger"
+                              className="btn btn-success"
                               onClick={()=>handleDelete(cat._id)}
                             >
                               Delete

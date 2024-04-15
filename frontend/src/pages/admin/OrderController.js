@@ -36,7 +36,7 @@ function OrderController() {
                   <tr>
                     <th>Order ID</th>
                     <th>User</th>
-                    <th>Email</th>
+                    <th>Email & Mobile</th>
                     <th>Address</th>
                     <th>Product Details</th>
                     <th>Total Amount</th>
@@ -49,7 +49,14 @@ function OrderController() {
                     <tr key={order._id}>
                       <td>{order._id}</td>
                       <td>{order.customer.username}</td>
-                      <td>{order.customer.email}</td>
+                      <td>
+                        <p>
+                          {order.customer.email}
+                          </p>
+                          <p>
+                            {order.mobileNumber}
+                          </p>
+                      </td>
                       <td>
                         <ul>
                           <li>
@@ -68,7 +75,7 @@ function OrderController() {
                         </ul>
                       </td>
                       <td>{order.payment.totalAmount}</td>
-                      <td>{order.status}</td>
+                      <td>Processing</td>
                       <td>{new Date(order.createdAt).toLocaleString()}</td>
                     </tr>
                   ))}

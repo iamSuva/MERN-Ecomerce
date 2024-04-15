@@ -28,6 +28,7 @@ console.log(product);
         const { data } = await axios.get(
             `${process.env.REACT_APP_API_URL}/api/product/similar-products/${catid}/${pid}`
           );
+          console.log("similar product ",data.products);
           if(data.success)
           {
             setSimilarProducts(data.products);
@@ -42,34 +43,35 @@ console.log(product);
   return (
     <Layout>
       <div className="row container ">
-        <div className="col-md-6 mt-4 product-box">
+        <div className="col-md-6 mt-4 product-box ">
           <img
             src={`${process.env.REACT_APP_API_URL}/${product.productImage}`}
             class="card-img-top"
             alt={product.name}
-            style={{ width: "300px", height: "250px",borderRadius:"10px" }}
+            style={{ width: "150px", height: "150px",borderRadius:"10px" }}
             />
         </div>
         <div className="col-md-6 product-details">
-            <h3 className="text-center">Product details</h3>
-            <h3>Name: {product.name}</h3>
-            <h3>Description: {product.description}</h3>
-            <h3>Price: Rs:- {product.price}/- </h3>
-            <h3>Category: {product.category?.name}</h3>
+            <h4 className="text-center">Product details</h4>
+            <p>Name: {product.name}</p>
+            <p>Description: {product.description}</p>
+            <p>Price: Rs:- {product.price}/- </p>
+            <p>Category: {product.category?.name}</p>
             <button className="btn btn-secondary ">Add to cart</button>
             </div>
       </div>
-      <div className="row mt-3">
-        <h1>Similar products</h1>
+       <hr/>
+      <div className="row mt-3 mx-2 similar-product-box">
+        <h4 className="text-center">Similar products</h4>
         {
             similarProducts?.map((product) => (
               
-                  <div className="card m-2" style={{ width: "18rem" }}>
+                  <div className="card m-2 similar-product" style={{ width: "15rem" }}>
                     <img
                       src={`${process.env.REACT_APP_API_URL}/${product.productImage}`}
                       class="card-img-top"
                       alt="product image"
-                      style={{ width: "150px", height: "120px" }}
+                      style={{ width: "80px", height: "80px" }}
                     />
                     <div className="card-body">
                       <h5 className="card-title">{product.name}</h5>
@@ -77,7 +79,7 @@ console.log(product);
                       <p>Price: {product.price} Rs/-</p>
                       <button className="btn btn-secondary m-1"
                     onClick={()=>navigate(`/product/${product.slug}`)}
-                    >More</button>
+                    >view</button>
                       {/* <Button className="btn btn-info">Add Cart</Button> */}
                     </div>
                   </div>

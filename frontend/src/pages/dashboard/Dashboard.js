@@ -13,12 +13,14 @@ const Dashboard = () => {
           <div className="col-md-3">
             <Usersidebar />
           </div>
-          <div className="col-md-9">
-            <div className="card w-60 p-3">
-              <h3>welcome user :{auth?.user?.username} </h3>
-              <h4>Email :{auth?.user?.email} </h4>
-            </div>
-          </div>
+          <div className='col-md-9'>
+                <div className='p-3'>
+                    <h4>Welcome {auth?.user?.username}</h4>
+                    <p>Please Select action from Sidebar</p>
+                    {/* <h3>Admin : {auth?.user?.username}</h3>
+                    <h3>AdminEmail : {auth?.user?.email}</h3> */}
+                </div>
+              </div>
         </div>
       </div>
     </Layout>

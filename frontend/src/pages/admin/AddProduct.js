@@ -76,9 +76,9 @@ const AddProduct = () => {
             <Sidebar />
           </div>
           <div className="col-md-9">
-            <div className="card w-80 p-3">
+            <div className="card w-50 p-3 my-2">
               <h1>Add Product</h1>
-              <div className="mb-3">
+              <div className="m-3">
                 <Select
                   variant="false"
                   placeholder="select a category"
@@ -87,7 +87,7 @@ const AddProduct = () => {
                   onChange={(value) => {
                     setCategory(value);
                   }}
-                  showSearch
+                
                 >
                   {categories?.map((cat) => {
                     return (
@@ -109,7 +109,7 @@ const AddProduct = () => {
               </div>
               <div className="mb-3">
                 <input
-                  type="number"
+                  type="text"
                   placeholder="Enter Product price"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
@@ -118,7 +118,7 @@ const AddProduct = () => {
               </div>
               <div className="mb-3">
                 <input
-                  type="number"
+                  type="text"
                   placeholder="Enter Product quantity"
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
@@ -148,9 +148,9 @@ const AddProduct = () => {
                 </label>
               </div>
               <div className="mb-3">
-                <div className="text-center">
+                <div className="text-center ">
                   {photo && (
-                    <img src={URL.createObjectURL(photo)} alt="product image" />
+                    <img src={URL.createObjectURL(photo)} style={{width:"50px"}} alt="product image" />
                   )}
                 </div>
               </div>

@@ -8,7 +8,6 @@ import { useCart } from "../../context/cartContex";
 
 const Header = () => {
   const { carts, setCarts } = useCart();
-
   const { auth, setAuth } = useAuth();
   const categories = useCategory();
   console.log("all cat ", categories);
@@ -37,7 +36,7 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <Link className="navbar-brand navlogo" to="/">
+            <Link className="navbar-brand navlogo text-light" to="/">
               BuYsite
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">

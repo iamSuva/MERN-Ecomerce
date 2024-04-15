@@ -82,7 +82,7 @@
   color: black;
 }
 .product-card{
-  background-color: rgb(126, 141, 136);
+  background-color: rgb(120, 177, 158);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,8 +92,17 @@
 }
 /* in ProductDetails.js */
 .product-box{ 
-  background-color: aliceblue;
- text-align: center;
+  background-color: rgb(66, 84, 102);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+ min-height:300px;
+}
+.similar-product-box{ 
+  background-color: rgb(132, 150, 186);
+  display:flex;
+  align-items: center;
+  justify-content: center;
  min-height:300px;
 }
 .product-details{
@@ -106,9 +115,10 @@
   border-radius: 10px;
   margin-top:5px;
 }
+
 /* homepage */
 .main-container{
-  background-color: #D3D3D3;
+  background-color: #a4c3ce;
 }
 
 
@@ -123,7 +133,7 @@
  
   background-color: #152039; 
   min-height:100vh; 
-  width: 250px; 
+  max-width: 200px; 
   padding: 20px; 
 
 }
@@ -132,13 +142,13 @@
   color: #ffff;
   border-radius: 10px;
   margin-top: 10px;
-  text-decoration: none; /* Remove underline */
-  padding: 10px 0; /* Add padding to links */
-  transition: background-color 0.3s ease; /* Smooth transition for background color */
+  text-decoration: none; 
+  padding: 10px 0; 
+  transition: background-color 0.3s ease; 
 }
 
 .sidebar a:hover {
-  background-color: #7c5e5e; /* Change background color on hover */
+  background-color: #7c5e5e; 
 }
 
 
@@ -159,13 +169,13 @@
   border: 1px ;
 }
 .table tbody tr {
-  border-bottom: 1px solid #ddd; /* Add border bottom to separate rows */
+  border-bottom: 1px solid #ddd; 
 }
 
-/* Style alternating row colors */
+
 .table tbody tr:nth-child(odd) {
-  background-color: #8c929c; /* Light gray background color for even rows */
+  background-color: #8c929c; 
 }
 .table tbody tr:hover {
-  background-color: #efdfdf; /* Light background color on hover */
+  background-color: #efdfdf; 
 }

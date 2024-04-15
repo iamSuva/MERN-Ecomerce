@@ -9,8 +9,7 @@ const categorySchema=new Schema({
     slug:{
         type:String,
         lowercase:true
-    }
-    
+    }   
 })
 
 const categoryModel=new mongoose.model("category",categorySchema);

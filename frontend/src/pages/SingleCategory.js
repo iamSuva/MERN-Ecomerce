@@ -30,14 +30,14 @@ const SingleCategory = () => {
   return (
     <Layout>
       <div className="container">
-        <h1 className="text-center">Category : {category?.name}</h1>
-        <h3 className="text-center">{products?.length} products found.🙂</h3>
+        <h5 className="text-center">Category : {category?.name}</h5>
+        <p className="text-center">{products?.length} products found.🙂</p>
 
         <div className="d-flex flex-wrap">
           {products?.map((product) => (
             <div className="card m-2" style={{ width: "18rem" }}>
               <img
-                src={`${process.env.REACT_APP_API_URL}/api/product/get-productImage/${product._id}`}
+                src={`${process.env.REACT_APP_API_URL}/${product.productImage}`}
                 class="card-img-top"
                 alt="product image"
                 style={{ width: "150px", height: "120px" }}

@@ -240,8 +240,7 @@ export const productPagination = async (req, res) => {
     let perpage = 5;
     let page = req.params.page ? req.params.page : 1;
     const products = await productModel
-      .find()
-    
+      .find()    
       .skip((page - 1) * perpage)
       .limit(perpage)
       .sort({ createdAt: -1 });
@@ -292,7 +291,6 @@ export const similarProductController = async (req, res) => {
         category: catid,
         _id: { $ne: pid },
       })
-      .select("-productImage")
       .limit(3)
       .populate("category");
     return res.status(200).send({
@@ -329,53 +327,7 @@ export const productsByCategoryController = async (req, res) => {
   }
 };
 
-//payment gateway
-//token
-export const braintreePaymentToken = async (req, res) => {
-  try {
-    gateway.clientToken.generate({}, function (err, response) {
-      if (err) {
-        res.status.send(err);
-      } else {
-        res.send(response);
-      }
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-//payment
-export const braintreePaymentController = async (req, res) => {
-  try {
-    const { cart, nonce } = req.body;
-    let total = 0;
-    cart.map((item) => {
-      total += item.price;
-    });
 
-    let newTransaction = gateway.transaction.sale(
-      {
-        amount: total,
-        paymentMethodNonce: nonce,
-        options: {
-          submitForSettlement: true,
-        },
-      },
-      function (err, result) {
-        if (result) {
-          const order = new orderModel({
-            products: cart,
-            payment: result,
-            customer: req.user._id,
-          }).save();
-          return res.json({ ok: true });
-        } else {
-          return res.status(500).send(err);
-        }
-      }
-    );
-  } catch (error) {}
-};
 
 export const placeOrderController = async (req, res) => {
   try {

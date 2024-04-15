@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
-    
+      
       <div className="d-flex flex-column sidebar">
         <Link to="/dashboard/admin/addCategory">Add category</Link>
         <Link to="/dashboard/admin/addProduct">Add product</Link>
