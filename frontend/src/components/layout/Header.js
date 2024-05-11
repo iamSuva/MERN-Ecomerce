@@ -73,16 +73,15 @@ const Header = () => {
               
               </ul>
             
-            <ul className="navbar-nav mb-2 mb-lg-0 mr-2">
               <SearchForm />
+            <ul className="navbar-nav mb-2 mb-lg-0 mx-3">
+              <li>
+
+              </li>
 
               
-                
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/cart">
-                  Cart ({carts?.length})
-                </NavLink>
-              </li>
+             
+             
               {!auth.user ? (
                 <>
                   <li className="nav-item">
@@ -131,10 +130,17 @@ const Header = () => {
                           Logout
                         </NavLink>
                       </li>
+                      
                     </ul>
+
                   </li>
                 </>
               )}
+               <li className="nav-item">
+                <NavLink className="nav-link" to="/cart">
+                  Cart ({carts?.length})
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>
