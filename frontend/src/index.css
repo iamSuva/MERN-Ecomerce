@@ -38,6 +38,7 @@
 
 .footer{
   color: white;
+  background-color: #8c929c;
   padding: 15px;
 }
 .footer a{
@@ -130,7 +131,6 @@
 /* side bar */
 /* Define styles for the sidebar */
 .sidebar {
- 
   background-color: #152039; 
   min-height:100vh; 
   max-width: 200px; 

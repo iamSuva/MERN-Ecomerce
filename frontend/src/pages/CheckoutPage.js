@@ -23,7 +23,7 @@ const CheckoutPage = () => {
     const calculateTotalAmount = () => {
       let total = 0;
       carts.forEach((product) => {
-        total += product.price;
+        total += product.price*product.quantity;
       });
       setTotalAmount(total);
     };
@@ -40,7 +40,8 @@ const CheckoutPage = () => {
     try {
       // Save order data to the database
       const orderData = {
-        products: carts.map((product) => product._id),
+        products: carts.map((product) =>product._id),
+        
         payment: {
           totalAmount
         },

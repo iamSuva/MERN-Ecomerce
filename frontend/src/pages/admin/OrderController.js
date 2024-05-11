@@ -75,7 +75,7 @@ function OrderController() {
                         </ul>
                       </td>
                       <td>{order.payment.totalAmount}</td>
-                      <td>Processing</td>
+                      <td>Placed</td>
                       <td>{new Date(order.createdAt).toLocaleString()}</td>
                     </tr>
                   ))}

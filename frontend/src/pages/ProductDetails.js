@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/layout/Layout";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { useCart } from "../context/cartContex";
+import { toast } from "react-toastify";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [similarProducts,setSimilarProducts]=useState([]);
   const params = useParams();
 const navigate=useNavigate();
+  const {carts,setCarts}=useCart();
+
 console.log(product);
   const getProduct = async () => {
     try {
@@ -37,6 +41,16 @@ console.log(product);
         console.log(error);
     }
   }
+  const handleCart=(product)=>{
+    alert(product.name);
+    const updatedCarts=carts ? [...carts,product]: [product];
+    setCarts(updatedCarts);
+    localStorage.setItem("carts",JSON.stringify(updatedCarts));
+    toast.success("added to cart");
+
+  }
+
+
   useEffect(() => {
     getProduct();
   }, [params.slug]);
@@ -57,7 +71,9 @@ console.log(product);
             <p>Description: {product.description}</p>
             <p>Price: Rs:- {product.price}/- </p>
             <p>Category: {product.category?.name}</p>
-            <button className="btn btn-secondary ">Add to cart</button>
+            <button className="btn btn-info "
+            onClick={()=>handleCart(product)}
+            >Add to cart</button>
             </div>
       </div>
        <hr/>

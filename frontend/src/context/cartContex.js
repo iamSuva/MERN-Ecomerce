@@ -9,10 +9,12 @@ useEffect(()=>{
    let mycarts=JSON.parse(localStorage.getItem("carts"));
    console.log("Stored carts:", mycarts);
    if(carts){
-
+    
       setCarts(mycarts);
    }
 },[]);
+
+
 
  return (
     <CartContex.Provider value={{carts,setCarts}}>

@@ -60,8 +60,9 @@ export const loginController = async (req, res) => {
         message: "Password is invalid",
       });
     }
+    
     //generate token
-    const token = jwt.sign({ _id: user._id }, process.env.SECRET_KEY, {
+    const token= jwt.sign({ _id: user._id }, process.env.SECRET_KEY, {
       expiresIn: "1d",
     });
     return res.status(200).send({

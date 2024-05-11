@@ -17,7 +17,9 @@ const Cartpage = () => {
   //total price of cart
   const calculateTotalPrice = () => {
     let total = 0;
-    carts?.map((prod) => (total = total + prod.price));
+    carts?.forEach((prod) =>
+       total = total + prod.price*prod.quantity
+  );
     return total;
   };
   
@@ -30,8 +32,34 @@ const Cartpage = () => {
       setCarts(mycart);
     } catch (error) {}
   };
+ const handleIncrement=(product)=>{
+  const newprod={...product,quantity:product.quantity+1};
+  const updatedCarts=carts.map((prod)=>{
+    if(prod._id==product._id)
+      {
+        return {...prod,quantity:prod.quantity+1};
+      }
+      return prod;
+  });
+ console.log(updatedCarts);
+  setCarts(updatedCarts)
+  localStorage.setItem("carts",JSON.stringify(updatedCarts));
+ }
+ const handleDecrement=(product)=>{
+  console.log("prod",product);
+  // const newprod={...product,quantity:product.quantity+1};
+  const updatedCarts=carts.map((prod)=>{
+    if(prod._id==product._id)
+      {
+        return {...prod,quantity:prod.quantity>1?product.quantity-1:product.quantity};
+      }
+      return prod;
+  });
+ console.log(updatedCarts);
+  setCarts(updatedCarts)
+  localStorage.setItem("carts",JSON.stringify(updatedCarts));
+ }
 
-  
 
   return (
     <Layout title="Cart-page">
@@ -56,14 +84,17 @@ const Cartpage = () => {
               </div>
               <div className="col-md-4">
                 <p>{product.name}</p>
-                <p>RS:-{product.price}/-</p>
-
+                <p>RS:- {product.price}/-</p>
+                <p>Quantity:{product.quantity}</p>
                 <button
-                  className="btn btn-danger"
+                  className="btn btn-secondary"
                   onClick={() => removeCartItem(product._id)}
                 >
                   Remove
                 </button>
+                <button className="btn btn-info m-2" onClick={()=>handleIncrement(product)}>+</button>
+               {product.quantity>1 && <button className="btn btn-info m-2" onClick={()=>handleDecrement(product)}>-</button>
+            }
               </div>
             </div>
           ))}

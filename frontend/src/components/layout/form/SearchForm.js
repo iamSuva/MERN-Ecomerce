@@ -27,10 +27,11 @@ const SearchForm = () => {
         <input
           className="form-control me-2"
           type="search"
-          placeholder="Search"
+              
           aria-label="Search"
           value={search.keyword}
           onChange={(e)=>setSearch({...search,keyword:e.target.value})}
+          placeholder="Enter product title"
         />
         <button className="btn btn-outline-success" type="submit">
           Search

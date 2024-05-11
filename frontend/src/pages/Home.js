@@ -145,6 +145,23 @@ const Home = () => {
   const resetFilter = () => {
     window.location.reload();
   };
+
+const handleAddtocart=(product)=>{
+  console.log(product.name)
+  const newprod={...product,quantity:1};
+  const updatedCarts = carts
+  ? [...carts, newprod]
+  : [newprod];
+setCarts(updatedCarts);
+localStorage.setItem(
+  "carts",
+  JSON.stringify(updatedCarts)
+);
+toast.success("Added to cart");
+}
+
+
+
   return (
     <Layout title="BuYsite-Home page">
       <SlideShow />
@@ -215,17 +232,7 @@ const Home = () => {
                   </Button>
                   <Button
                     className="btn btn-info"
-                    onClick={() => {
-                      const updatedCarts = carts
-                        ? [...carts, product]
-                        : [product];
-                      setCarts(updatedCarts);
-                      localStorage.setItem(
-                        "carts",
-                        JSON.stringify(updatedCarts)
-                      );
-                      toast.success("Added to cart");
-                    }}
+                    onClick={() => handleAddtocart(product)}
                   >
                     Add Cart
                   </Button>

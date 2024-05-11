@@ -20,7 +20,7 @@ const Order = () => {
           }
         );
         console.log("response orders ", response.data);
-        if (response.data.success) {
+        if (response.data.success){
           console.log("Order placed successfully:", response.data);
           setOrders(response.data.orders);
           setisLoading(false);
@@ -40,7 +40,7 @@ const Order = () => {
           <div className="col-md-3">
             <Usersidebar/>
           </div>
-          <div className="col-md-9">
+          <div className="col-md-9 mr-md-3">
             <h1>All orders</h1>
             <table className="table">
               <thead>
@@ -53,17 +53,21 @@ const Order = () => {
               </thead>
               <tbody>
                 {orders.map((order) => (
+                //  console.log(order)
                   <tr key={order._id}>
                     <td>{order._id}</td>
                     <td>
                       <ul>
                         {order.products.map((product) => (
-                          <li key={product._id}>{product.name}</li>
+                          <li key={product._id}>
+                          {product.name} - RS:{product.price} 
+                               
+                        </li>
                         ))}
                       </ul>
                     </td>
                     <td>{order.payment.totalAmount}</td>
-                    <td>Processing</td>
+                    <td>Placed</td>
                   </tr>
                 ))}
               </tbody>

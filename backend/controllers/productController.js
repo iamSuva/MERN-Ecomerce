@@ -323,6 +323,7 @@ export const productsByCategoryController = async (req, res) => {
 
 export const placeOrderController = async (req, res) => {
   try {
+    console.log("order---",req.body);
     const {
       products,
       payment,
@@ -347,8 +348,8 @@ export const placeOrderController = async (req, res) => {
     });
 
     // Save the order to the database
-    const savedOrder = await newOrder.save();
-
+     const savedOrder = await newOrder.save();
+    console.log(newOrder);
     res.status(200).send({
       success: true,
       message: "Order placed",

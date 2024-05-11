@@ -7,7 +7,7 @@ import Spinner from "../components/layout/Spinner";
 import { Outlet } from "react-router-dom";
 
 const Adminroutes = () => {
-    console.log("private routes");
+  console.log("private routes");
   const [ok, setOk] = useState(false);
   const { auth, setAuth } = useAuth();
 
@@ -33,7 +33,7 @@ const Adminroutes = () => {
     }
   }, [auth?.token]);
 
-  return ok ? <Outlet/> : <Spinner  />;
+  return ok ? <Outlet/> : <Spinner/>;
 };
 
 export default Adminroutes;

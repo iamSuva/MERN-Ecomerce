@@ -39,14 +39,11 @@ const Header = () => {
             <Link className="navbar-brand navlogo text-light" to="/">
               BuYsite
             </Link>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <SearchForm />
-              <li className="nav-item">
-                <NavLink className="nav-link" aria-current="page" to="/">
-                  Home
-                </NavLink>
-              </li>
-              <li className="nav-item">
+            <NavLink className="nav-link" aria-current="page" to="/">
+              Home
+            </NavLink>
+            <ul className="navbar-nav  me-auto mb-2 mb-lg-0">  
+         
                 <li class="nav-item dropdown">
                   <Link
                     class="nav-link dropdown-toggle"
@@ -59,7 +56,6 @@ const Header = () => {
                     Category
                   </Link>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                   
                     {categories?.map((cat) => {
                       return (
                         <li key={cat._id}>
@@ -74,7 +70,14 @@ const Header = () => {
                     })}
                   </ul>
                 </li>
-              </li>
+              
+              </ul>
+            
+            <ul className="navbar-nav mb-2 mb-lg-0 mr-2">
+              <SearchForm />
+
+              
+                
               <li className="nav-item">
                 <NavLink className="nav-link" to="/cart">
                   Cart ({carts?.length})
@@ -100,7 +103,6 @@ const Header = () => {
                       className="nav-link dropdown-toggle"
                       to="/dashboard"
                       id="navbarDropdown"
-                      
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
@@ -134,7 +136,6 @@ const Header = () => {
                 </>
               )}
             </ul>
-          
           </div>
         </div>
       </nav>
