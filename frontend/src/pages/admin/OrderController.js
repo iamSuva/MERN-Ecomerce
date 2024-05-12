@@ -120,7 +120,7 @@ function OrderController() {
                         </select>
                       </td>
                       <td>{new Date(order.createdAt).toLocaleString()}</td>
-                      <th>Order Date</th>
+                      
                     </tr>
                   ))}
                 </tbody>

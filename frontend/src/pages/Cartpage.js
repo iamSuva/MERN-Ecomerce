@@ -64,12 +64,12 @@ const Cartpage = () => {
   return (
     <Layout title="Cart-page">
       <h1 className="text-center">Welcome to cart page</h1>
+      {
+        carts.length==0 && 
+        <h4 className="text-center">Cart is empty.... Please....add something.</h4>
+      }
       <div className="row">
-        {/* <h2 className="">
-          {carts && carts.length > 0
-            ? `You have ${carts.length} items in cart`
-            : "Cart is empty"}
-        </h2> */}
+       
 
         <div className="col-md-9">
           { carts && carts.map((product) => (
@@ -100,7 +100,7 @@ const Cartpage = () => {
           ))}
         </div>
         <div className="col-md-3">
-          {carts?.length > 0 ? (
+          {carts?.length > 0 && (
             <>
               <h2>Your cart Summary</h2>
               <hr />
@@ -115,9 +115,8 @@ const Cartpage = () => {
                 </button>
               )}
             </>
-          ) : (
-            <h1>Cart is empty add some products</h1>
-          )}
+          )
+        }
           {!auth.token && (
             <button className="btn btn-info" onClick={() => navigate("/login")}>
               Please login to Checkout
