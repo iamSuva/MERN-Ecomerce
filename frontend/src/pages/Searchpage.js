@@ -33,7 +33,7 @@ const Searchpage = () => {
                     <button className="btn btn-secondary m-1"
                     onClick={()=>navigate(`/product/${product.slug}`)}
                     >More</button>
-                    <button className="btn btn-info">Add Cart</button>
+                   
                   </div>
                 </div>
              

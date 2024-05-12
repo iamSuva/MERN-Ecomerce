@@ -120,6 +120,7 @@
 /* homepage */
 .main-container{
   background-color: #a4c3ce;
+  /* margin-top: 0; */
 }
 
 
@@ -178,4 +179,13 @@
 }
 .table tbody tr:hover {
   background-color: #efdfdf; 
+}
+
+.checkout-form{
+  max-width:500px;
+  padding:10px; 
+  background-color: #b3c2e3; 
+  border: 1px solid #ccc; 
+  border-radius: 8px; 
+  margin-bottom:15px;
 }

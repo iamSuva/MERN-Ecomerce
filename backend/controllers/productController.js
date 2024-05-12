@@ -405,3 +405,26 @@ export const allOrdersControllers = async (req, res) => {
     });
   }
 };
+
+
+//update order status
+
+export const orderStatusController=async(req,res)=>{
+  try {
+    const {status}=req.body;
+    const orderId=req.params.id;
+     console.log(req.body)
+    const order=await orderModel.findByIdAndUpdate(orderId,{status},{new:true});
+    return res.status(200).send({
+      success:true,
+      message:"order status updated",
+     
+    })
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success:false,
+      message:"internal server",
+    })
+  }
+}

@@ -10,6 +10,7 @@ import {
   getAllProduct,
   getProductImage,
   getSingleProduct,
+  orderStatusController,
   ordersController,
   placeOrderController,
   productCountController,
@@ -46,7 +47,7 @@ router.get("/get-allproducts", getAllProduct);
 router.get("/get-product/:name", getSingleProduct);
 router.get("/get-productImage/:id", getProductImage);
 router.delete("/delete-product/:id", deleteProduct);
-router.put("/update-product/:id", upload.single("productImage"), updateProduct);
+router.put("/update-product/:id", upload.single("productImage"),updateProduct);
 router.post("/get-filters", filterProductController);
 router.get("/product-count",productCountController);
 router.get("/product-page/:page",productPagination);
@@ -54,11 +55,9 @@ router.get("/product-search/:keyword",productSearchController);
 router.get("/similar-products/:catid/:pid",similarProductController);
 router.get("/product-bycategory/:slug",productsByCategoryController);
 
-//payments
-// router.get("/braintree/token",braintreePaymentToken);
-// router.post("/braintree/payment",requireSign,braintreePaymentController)
 
 router.post("/placeOrder",placeOrderController);
+router.put("/order-status/:id",orderStatusController);
 
 router.get("/get-orders",requireSign,ordersController);
 router.get("/get-allorders",allOrdersControllers);

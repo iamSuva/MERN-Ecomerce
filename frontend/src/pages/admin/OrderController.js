@@ -21,6 +21,38 @@ function OrderController() {
 
     fetchOrders();
   }, []);
+  const handleOrderStatus=async(orderid,status)=>{
+      console.log("order is ",orderid);
+      console.log("order status is ",status);
+     const id=orderid;
+      try {
+        const response=await axios.put(
+          `${process.env.REACT_APP_API_URL}/api/product/order-status/${id}`,
+          {status});
+        const data=response.data;
+        console.log(data);
+
+        if(data.success)
+          {
+            console.log("order status updated");
+            const updatedOrder=allOrders.map((item)=>{
+              if(item._id===orderid)
+                {
+                  return {
+                    ...item,
+                    status:status
+                  }
+                }
+                return item;
+            })
+            setOrders(updatedOrder);
+          }
+        
+      } catch (error) {
+        console.log(error);
+      }
+  }
+
   return (
     <Layout>
       <div className="container-fuild ">
@@ -29,8 +61,8 @@ function OrderController() {
             <Sidebar />
           </div>
           <div className="col-md-10">
-            <div>
-              <h1>Admin Dashboard</h1>
+              <h1 >Admin Dashboard</h1>
+            <div className="table-responsive">
               <table className="table">
                 <thead>
                   <tr>
@@ -75,8 +107,20 @@ function OrderController() {
                         </ul>
                       </td>
                       <td>{order.payment.totalAmount}</td>
-                      <td>Placed</td>
+                      <td>
+                      <select
+                          value={order.status}
+                          onChange={(e) => handleOrderStatus(order._id, e.target.value)}
+                        >
+                          <option value="Not process">Not Process</option>
+                          <option value="Processing">Processing</option>
+                          <option value="Shipped">Shipped</option>
+                          <option value="Delivered">Delivered</option>
+                          <option value="Cancel">Cancel</option>
+                        </select>
+                      </td>
                       <td>{new Date(order.createdAt).toLocaleString()}</td>
+                      <th>Order Date</th>
                     </tr>
                   ))}
                 </tbody>

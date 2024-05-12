@@ -111,7 +111,7 @@ const Cartpage = () => {
                   className="btn btn-info"
                   onClick={() => navigate("/dashboard/user/checkout")}
                 >
-                  Make Payment
+                  Checkout
                 </button>
               )}
             </>
