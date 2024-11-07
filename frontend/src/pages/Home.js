@@ -163,7 +163,7 @@ toast.success("Added to cart");
 
 
   return (
-    <Layout title="BuYsite-Home page">
+    <Layout title="ShopEase-Home page">
       <SlideShow />
       <div className="row mt-3 mx-3 ">
         <div className="col-md-2">
