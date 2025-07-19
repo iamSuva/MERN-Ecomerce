@@ -37,7 +37,7 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <Link className="navbar-brand navlogo text-light" to="/">
-              BuYsite
+              ShopEase
             </Link>
             <NavLink className="nav-link" aria-current="page" to="/">
               Home
